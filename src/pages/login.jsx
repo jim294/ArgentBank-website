@@ -12,7 +12,6 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
 
-        console.log(email, password)
         dispatch(loginUser({email, password}))
     }
 
@@ -25,7 +24,7 @@ const Login = () => {
                     <form>
                         <div className="input-wrapper">
                             <label htmlFor="userMail">Username</label>
-                            <input type="email" id="userMail" value={email} onChange={(e)=>setUserMail(e.target.value)}/>
+                            <input type="text" id="userMail" value={email} onChange={(e)=>setUserMail(e.target.value)}/>
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>

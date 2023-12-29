@@ -7,44 +7,17 @@ const initialState = {
     loading: false
 }
 
-const API_URL = 'http://localhost:3001/api/v1/user/';
+export const loginUser = createAsyncThunk('user', async ({email, password}) => {
 
-// export const loginUser = createAsyncThunk('user', async (email, password) => {
-export const loginUser = ( (email, password) => {
-    const newMail = email;
-    const newPassword= password;
-    console.log(newMail, newPassword)
-
-    return axios.post(API_URL + 'login', { email, password }).then(response => {
+    return axios.post("http://localhost:3001/api/v1/user/login", { email, password }).then(response => {
         console.log(response.data.body.token);
         if (response.data.body.token) {
             localStorage.setItem('user', JSON.stringify(response.data));
+            localStorage.setItem('token', JSON.stringify(response.data.body.token))
         }
-
+        
         return response.data;
     });
-    
-//     try {
-//         const res = await fetch("http://localhost:3001/api/v1/user/login",{
-//         method:'POST',
-//         headers:{
-//             "accept": "application/json",
-//             "Content-Type": "application/json",
-//             // Authorization: localStorage.getItem('token')
-//         },
-//         body: JSON.stringify({
-//             // email, password
-//             "email": "tony@stark.com",
-//             "password": "password123"
-//             // "email": `"${newMail}"`,
-//             // "password": `"${newPassword}"`
-//           })
-//     })
-//     const response =  await res.json();
-//     console.log(response)
-// } catch (error) {
-//     console.error(`An error has occurred while logging in with the following credentials : ${error}`);
-// }
 })
 
 
