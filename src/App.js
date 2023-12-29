@@ -5,10 +5,12 @@ import Login from './pages/login.jsx'
 import User from "./pages/user.jsx"
 import Header from '../src/components/Header.jsx';
 import Footer from '../src/components/Footer';
+import { Provider } from "react-redux";
+import store from './redux/store'
 
 function App() {
   return (
-    <div>
+    <Provider store={store}>
        <BrowserRouter>
           <Header />
 				  <Routes>
@@ -19,8 +21,7 @@ function App() {
 				  </Routes>
           <Footer />
 			  </BrowserRouter>
-
-    </div>
+    </Provider>
   );
 }
 

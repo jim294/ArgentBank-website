@@ -1,4 +1,21 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/authSlice";
+
 const Login = () => {
+
+    const [email, setUserMail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch()
+    
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        console.log(email, password)
+        dispatch(loginUser({email, password}))
+    }
+
     return(
         <>
             <main className="main bg-dark">
@@ -7,18 +24,18 @@ const Login = () => {
                     <h1>Sign In</h1>
                     <form>
                         <div className="input-wrapper">
-                            <label htmlFor="username">Username</label>
-                            <input type="text" id="username" />
+                            <label htmlFor="userMail">Username</label>
+                            <input type="email" id="userMail" value={email} onChange={(e)=>setUserMail(e.target.value)}/>
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" />
+                            <input type="password" id="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                         </div>
                         <div className="input-remember">
                             <input type="checkbox" id="remember-me" />
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
-                        <button className="sign-in-button">Sign In</button> 
+                        <button className="sign-in-button" onClick={handleLogin}>Sign In</button> 
                     </form>
                 </section>
             </main>
