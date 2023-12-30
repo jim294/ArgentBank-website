@@ -7,46 +7,40 @@ const initialState = {
     loading: false
 }
 
-export const loginUser = createAsyncThunk('user', async ({email, password}) => {
+export const loginUser = createAsyncThunk('user', async ({ email, password }) => {
+    try {
+        const response = await axios.post("http://localhost:3001/api/v1/user/login", { email, password });
 
-    return axios.post("http://localhost:3001/api/v1/user/login", { email, password }).then(response => {
-        console.log(response.data.body.token);
         if (response.data.body.token) {
             localStorage.setItem('user', JSON.stringify(response.data));
-            localStorage.setItem('token', JSON.stringify(response.data.body.token))
+            localStorage.setItem('token', JSON.stringify(response.data.body.token));
         }
-        
+
         return response.data;
-    });
-})
+    } catch (error) {
+        console.error(`An error has occurred while retrieving user information : ${error}`);
+        throw error;
+    }
+});
 
 
 const authSlice = createSlice({
-    name: "user",
+    name: 'auth',
     initialState,
-    reducers:{
-        addToken:(state, action) => {
-            state.token = localStorage.getItem('token')
+    reducers: {
+        addToken: (state) => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                state.token = JSON.parse(token);
+            }
         },
-        addUser:(state, action) => {
-            state.user = localStorage.getItem('user')
+        setUser: (state) => {
+            const user = localStorage.getItem('user');
+            if (user) {
+                state.user = JSON.parse(user);
+            }
         }
-    },
-    // extraReducers: {
-    //     [ loginUser.pending]:(state, action) => {
-    //         state.loading = true
-    //     },
-    //     [ loginUser.fulfilled]:(state, {payload:{user, token}}) => {
-    //         state.loading = false
-    //         state.token = token;
-    //         state.user = user;
-    //         localStorage.setItem("token", JSON.stringify(token))
-    //         localStorage.setItem("token", JSON.stringify(user))
-    //     },
-    //     [ loginUser.pending]:(state, action) => {
-    //         state.loading = true
-    //     }
-    // }
+    }
 })
 
 export const { addToken, addUser} = authSlice.actions;
