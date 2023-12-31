@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../redux/authSlice";
+import { loginUser, setUser, addToken } from "../redux/authSlice";
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -8,14 +9,48 @@ const Login = () => {
     const [password, setPassword] = useState("");
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
+
+    
     
     const handleLogin = async (e) => {
-        e.preventDefault();
+            e.preventDefault();
+            const response = await dispatch(loginUser({email, password}));
+            console.log(email, password)
 
-        console.log(email, password)
-        dispatch(loginUser({email, password}))
-    }
-
+                if(response) {
+                    const role = window.sessionStorage.getItem('token')
+                    const output = JSON.parse(role)
+                        dispatch(addToken(output))
+                        console.log(output)
+                        const getUserInfo = async (output) => {
+                                    try {
+                                        const request = await fetch(`http://localhost:3001/api/v1/user/profile`, {
+                                            method: 'POST',
+                                            headers: { 
+                                                "Content-Type": "application/json",
+                                                "Authorization": `Bearer ${output}`
+                                            }
+                                        });
+                                
+                                        const response = await request.json();
+                                        return response.status === 200 ? response : alert("wrong Username or Password");
+                                    } catch(error) {
+                                        console.error(`An error has occurred while retrieving user information : ${error}`);
+                                    }
+                                }
+                            const result = await getUserInfo(output);
+                            if(result) {
+                                const newState = {
+                                    token: output,
+                                    ...result.body
+                                }
+                                dispatch(setUser(newState));
+                                navigate('/user');
+                                }
+                }              
+        }
+        
     return(
         <>
             <main className="main bg-dark">
