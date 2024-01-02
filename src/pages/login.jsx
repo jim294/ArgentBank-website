@@ -19,7 +19,7 @@ const Login = () => {
             console.log(email, password)
 
                 if(response) {
-                    const role = window.sessionStorage.getItem('token')
+                    const role = window.localStorage.getItem('token')
                     const output = JSON.parse(role)
                         dispatch(addToken(output))
                         console.log(output)
@@ -50,7 +50,7 @@ const Login = () => {
                                 }
                 }              
         }
-        
+
     return(
         <>
             <main className="main bg-dark">

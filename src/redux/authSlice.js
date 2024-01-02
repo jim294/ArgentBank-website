@@ -2,9 +2,12 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from "axios"
 
 const initialState = {
-    user:"",
-    token:"",
-    loading: false
+    id: null,
+    email: '',
+    token: null,
+    firstName: '',
+    lastName: '',
+    userName: '',
 }
 
 export const loginUser = createAsyncThunk('user', async ({ email, password }) => {
@@ -12,8 +15,8 @@ export const loginUser = createAsyncThunk('user', async ({ email, password }) =>
         const response = await axios.post("http://localhost:3001/api/v1/user/login", { email, password });
 
         if (response.data.body.token) {
-            window.sessionStorage.setItem('user', JSON.stringify(response.data));
-            window.sessionStorage.setItem('token', JSON.stringify(response.data.body.token));
+            window.localStorage.setItem('user', JSON.stringify(response.data));
+            window.localStorage.setItem('token', JSON.stringify(response.data.body.token));
         }
 
         return response.data;
@@ -36,8 +39,17 @@ const authSlice = createSlice({
             state = { ...action.payload };
             return state;
         },
+        clearUser: (state) => {
+            state.id = null;
+            state.email = '';
+            state.token = null;
+            state.firstName = '';
+            state.lastName = '';
+            state.userName = '';
+            return state;
+        }
     }
 })
 
-export const { addToken, addUser, setUser} = authSlice.actions;
+export const { addToken, addUser, setUser, clearUser} = authSlice.actions;
 export default authSlice.reducer;
