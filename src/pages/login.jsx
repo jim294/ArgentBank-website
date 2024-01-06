@@ -43,7 +43,7 @@ const Login = () => {
                     <h1>Sign In</h1>
                     <form>
                         <div className="input-wrapper">
-                            <label htmlFor="userMail">Username</label>
+                            <label htmlFor="userMail">Email</label>
                             <input type="email" id="userMail" value={email} onChange={(e)=>setUserMail(e.target.value)}/>
                         </div>
                         <div className="input-wrapper">

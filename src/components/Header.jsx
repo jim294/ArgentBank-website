@@ -8,7 +8,7 @@ const Header = () => {
     const dispatch = useDispatch();
     
     const name = user.token !== null ? user.userName : "Sign In";
-    const linkName = user.token !== null ? "/profile" : "/login";
+    const linkName = user.token !== null ? "/user" : "/login";
 
     function logOut() {
         dispatch(clearUser());
