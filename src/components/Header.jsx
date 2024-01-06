@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUser } from "../redux/authSlice.js";
 
@@ -19,24 +19,24 @@ const Header = () => {
     return (
     <header>
         <nav className="main-nav">
-            <NavLink className="main-nav-logo" to="/">
+            <Link className="main-nav-logo" to="/">
                 <img
                 className="main-nav-logo-image"
                 src="img/argentBankLogo.png"
                 alt="Argent Bank Logo"
                 />
                 <h1 className="sr-only">Argent Bank</h1>
-            </NavLink>
+            </Link>
             <div>
-                <NavLink className="main-nav-item" to={linkName}>
+                <Link className="main-nav-item" to={linkName}>
                 <i className="fa fa-user-circle"></i>
                 {name}
-                </NavLink>
+                </Link>
                 {user.token !== null && (
-                        <navLink className="main-nav-item" to="/" onClick={logOut}>
+                        <Link className="main-nav-item" to="/" onClick={logOut}>
                             <i className="fa fa-sign-out" />
                             Sign Out
-                        </navLink> 
+                        </Link> 
                 )}
             </div>
         </nav>
