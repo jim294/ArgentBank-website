@@ -10,13 +10,17 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 300px;
 }
 
 .main {
@@ -157,6 +161,25 @@ body {
   background-color: brown;
 }
 
+.errorPage{
+  color: #00BC78;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.errorPage h1{
+  font-size: 200px;
+}
+
+.errorPage p{
+  font-size: 30px;
+}
+
+.errorPage__link{
+  color: #005834;
+  font-size: 20px;
+}
 
 @media (min-width: 920px) {
   .hero {
@@ -264,10 +287,13 @@ body {
 }
 
 .footer {
+  position: absolute;
   display: flex;
   justify-content: center;
   border-top: 2px solid #ccc;
   padding: 2rem 0 1.5rem;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer-text {
