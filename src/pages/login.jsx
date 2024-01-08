@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser, setUser, addToken } from "../redux/authSlice";
+import { setUser, addToken } from "../redux/authSlice";
+import { loginUser } from "../utils/loginUser.js";
 import { useNavigate } from 'react-router-dom'
 import { getUserInfo } from "../utils/getUserInfo.js";
 
@@ -15,13 +16,11 @@ const Login = () => {
     const handleLogin = async (e) => {
             e.preventDefault();
             const response = await dispatch(loginUser({email, password}));
-            console.log(email, password)
 
                 if(response) {
                     const role = window.localStorage.getItem('token')
                     const output = JSON.parse(role)
                         dispatch(addToken(output))
-                        console.log(output)
                         
                             const result = await getUserInfo(output);
                             if(result) {

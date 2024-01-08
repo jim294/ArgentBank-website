@@ -8,6 +8,8 @@ const Header = () => {
     const dispatch = useDispatch();
     
     const name = user.token !== null ? user.userName : "Sign In";
+    console.log(name)
+    console.log(user)
     const linkName = user.token !== null ? "/user" : "/login";
 
     function logOut() {

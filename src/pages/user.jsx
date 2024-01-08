@@ -1,10 +1,81 @@
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
+import { InputUser } from '../components/InputUser.jsx';
+import { updateInfo } from '../utils/updateInfo.js';
+import { updateUser } from '../redux/authSlice.js'
+
 const User = () => {
+
+    const user = useSelector((state) => state.user)
+    const dispatch = useDispatch();
+
+    const [editName, setEditName] = useState(false)
+    const [newUserName, setNewUserName] = useState(user.userName)
+    console.log(user.userName)
+
+    const handleEditNameClick = () => {
+      setEditName(true)
+    }
+
+    const role = window.localStorage.getItem('token')
+                    const output = JSON.parse(role)
+
+    const handleSaveClick = async (e) => {
+      e.preventDefault();
+      const response = await updateInfo(output, newUserName);
+      console.log(response)
+        if(response) {
+            dispatch(updateUser(newUserName));
+            alert('Username updated');
+        }
+    };
+
+    const handleCancelClick = (e) => {
+      e.preventDefault();
+      setEditName(false);
+    };
+
+    
+
     return(
         <>
             <main className="main bg-dark">
             <div className="header">
-        <h1>Welcome back<br />Tony Jarvis!</h1>
-        <button className="edit-button">Edit Name</button>
+        <h1>Welcome back<br />{user.firstName} {user.lastName}</h1>
+        {editName ? (
+          <form className="formUpdateEditName">                           
+          <InputUser className="formInputUser"
+              type="text"
+              name="username"
+              defaultValue={newUserName}
+              labelName="User name:"
+              onChange={(e) => setNewUserName(e.target.value)}
+          />
+
+          <InputUser
+              type="text"
+              id="firstName"
+              defaultValue={user.firstName}
+              labelName="First name:"
+              disabled={true}
+          />
+
+          <InputUser
+              type="text"
+              id="lastName"
+              defaultValue={user.lastName}
+              labelName="Last name:"
+              disabled={true}
+          />
+
+          <div className="formBtnUpdateName">
+              <button className="btn save-btn" onClick={handleSaveClick}>Save</button>
+              <button className="btn cancel-btn" onClick={handleCancelClick}>Cancel</button>
+          </div>
+      </form>
+        ):(
+          <button className="edit-button" onClick={handleEditNameClick}>Edit Name</button>
+        )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

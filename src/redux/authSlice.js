@@ -1,5 +1,4 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import axios from "axios"
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     id: null,
@@ -8,48 +7,41 @@ const initialState = {
     firstName: '',
     lastName: '',
     userName: '',
-}
+};
 
-export const loginUser = createAsyncThunk('user', async ({ email, password }) => {
-    try {
-        const response = await axios.post("http://localhost:3001/api/v1/user/login", { email, password });
-
-        if (response.data.body.token) {
-            window.localStorage.setItem('user', JSON.stringify(response.data));
-            window.localStorage.setItem('token', JSON.stringify(response.data.body.token));
-        }
-
-        return response.data;
-    } catch (error) {
-        console.error(`An error has occurred while retrieving user information : ${error}`);
-        throw error;
-    }
-});
-
+const getUserFromLocalStorage = () => {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+};
 
 const authSlice = createSlice({
-    name: 'auth',
-    initialState,
+    name: 'user',
+    initialState: getUserFromLocalStorage() || initialState,
     reducers: {
         addToken: (state, action) => {
             state.token = action.payload;
-            return state;
+            localStorage.setItem('user', JSON.stringify(state));
         },
         setUser: (state, action) => {
-            state = { ...action.payload };
-            return state;
+            const { id, email, token, firstName, lastName, userName } = action.payload;
+            state.id = id;
+            state.email = email;
+            state.token = token;
+            state.firstName = firstName;
+            state.lastName = lastName;
+            state.userName = userName;
+            localStorage.setItem('user', JSON.stringify(state));
         },
         clearUser: (state) => {
-            state.id = null;
-            state.email = '';
-            state.token = null;
-            state.firstName = '';
-            state.lastName = '';
-            state.userName = '';
-            return state;
-        }
-    }
-})
+            localStorage.removeItem('user');
+            return initialState;
+        },
+        updateUser: (state, action) => {
+            state.userName = action.payload;
+            localStorage.setItem('user', JSON.stringify(state));
+        },
+    },
+});
 
-export const { addToken, addUser, setUser, clearUser} = authSlice.actions;
+export const { addToken, setUser, clearUser, updateUser } = authSlice.actions;
 export default authSlice.reducer;

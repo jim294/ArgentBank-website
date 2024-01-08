@@ -113,6 +113,51 @@ body {
   font-size: 0.9rem;
 }
 
+.formUpdateEditName{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  padding-bottom: 10px;
+}
+
+.wrapper input{
+  height: 40px;
+  display: flex;
+  padding: 10px;
+}
+
+.formBtnUpdateName{
+  display: flex;
+  gap: 30px;
+}
+
+.save-btn, 
+.cancel-btn{
+  height: 40px;
+  width: 60px;
+  color: #fff;
+}
+
+.save-btn{
+  background-color: #00bc77;
+}
+
+.cancel-btn{
+  background-color: brown;
+}
+
+
 @media (min-width: 920px) {
   .hero {
     height: 400px;
@@ -276,8 +321,12 @@ body {
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
   color: #fff;
-  margin-bottom: 2rem;
+  font-weight: 800;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
 .transaction-button {

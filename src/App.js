@@ -7,6 +7,7 @@ import Header from '../src/components/Header.jsx';
 import Footer from '../src/components/Footer';
 import { Provider } from "react-redux";
 import store from './redux/store'
+import { ErrorPage } from "./pages/error.jsx";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
 					  <Route exact path="/" element={<Home />} />
 					  <Route path="/login" element={<Login />} />
 					  <Route path="/user" element={<User />} />
-					  {/* <Route path="*" element={<ErrorPage />} /> */}
+					  <Route path="*" element={<ErrorPage />} />
 				  </Routes>
           <Footer />
 			  </BrowserRouter>
