@@ -1,7 +1,42 @@
-.transactions{
+.transactions {
     background-color: #464849;
     color: white;
+    margin-top: 30px;
     i{
-        color: aliceblue;
+        font-size: 100px;
     }
-}
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  .table__title,
+  .table__article {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 20px;
+  }
+
+  .table__title{
+    font-weight: 800;
+  }
+  .table__article{
+    background-color: #42b983;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  /* Exemple de style pour les éléments individuels */
+  .Date,
+  .Description,
+  .Amount,
+  .Balance {
+    flex: 1;
+    text-align: center; /* Ajustez selon vos besoins */
+  }
