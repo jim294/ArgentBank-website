@@ -8,6 +8,7 @@ import Footer from '../src/components/Footer';
 import { Provider } from "react-redux";
 import store from './redux/store'
 import { ErrorPage } from "./pages/error.jsx";
+import Transactions from "./pages/transactions.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 					  <Route exact path="/" element={<Home />} />
 					  <Route path="/login" element={<Login />} />
 					  <Route path="/user" element={<User />} />
+					  <Route path="/transactions" element={<Transactions />} />
 					  <Route path="*" element={<ErrorPage />} />
 				  </Routes>
           <Footer />
