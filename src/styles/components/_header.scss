@@ -9,14 +9,24 @@
     &.router-link-exact-active {
       color: #42b983;
     }
+    text-decoration: none;
   }
   &-item {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     text-decoration: none;
     margin-right: 0.5rem;
+    .main-nav-item-sign {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      i {
+        padding-top: 3px;
+        text-decoration: none;
+      }
     &:hover {
       text-decoration: underline;
     }
@@ -32,7 +42,22 @@
   width: 200px;
 }
 
-.main-nav-item{
-  display: flex;
-  flex-direction: row;
+  .main-nav-item-form{
+    display: flex;
+    gap: 10px;
+    i {
+      padding-top: 5px;
+      text-decoration: none;
+    }
+  }
 }
+
+@media (max-width: 920px) {
+  .main-nav-item {
+    flex-direction: column;
+  }
+  .main-nav {
+    flex-direction: row;
+  }
+}
+

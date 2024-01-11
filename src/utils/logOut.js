@@ -16,8 +16,10 @@ const Logout = () => {
 
     return (
         <Link className="main-nav-item" to="/" onClick={logOut}>
+            <div className='main-nav-item-sign'>
             <i className="fa fa-sign-out" />
-            Sign Out
+            <p>Sign Out</p>
+            </div>
         </Link>
     );
 };
