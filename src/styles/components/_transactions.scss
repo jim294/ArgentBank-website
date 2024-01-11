@@ -40,3 +40,13 @@
     flex: 1;
     text-align: center; /* Ajustez selon vos besoins */
   }
+
+  @media (max-width: 425px) {
+    .transactions{
+      display: flex;
+      flex-direction: row;
+        i{
+            font-size: 30px;
+        }
+    }
+}
