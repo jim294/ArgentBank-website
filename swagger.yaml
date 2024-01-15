@@ -4,10 +4,10 @@ info:
   description: Contains all available API endpoints in this codebase
   version: 2.0.0
   termsOfService: 'http://swagger.io/terms/'
-# host: localhost:3001
-# basePath: /api/v1
-# schemes:
-#   - http
+host: localhost:3001
+basePath: /api/v1
+schemes:
+  - http
 paths:
   /user/login:
     post:
