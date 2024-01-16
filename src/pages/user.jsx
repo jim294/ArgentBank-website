@@ -10,7 +10,6 @@ const User = () => {
 
   const [editName, setEditName] = useState(false);
   const [newUserName, setNewUserName] = useState(user.userName);
-  console.log(user.userName);
 
   const handleEditNameClick = () => {
     setEditName(true);
@@ -22,7 +21,6 @@ const User = () => {
   const handleSaveClick = async (e) => {
     e.preventDefault();
     const response = await updateInfo(output, newUserName);
-    console.log(response);
     if (response) {
       dispatch(updateUser(newUserName));
       alert("Username updated");

@@ -14,7 +14,6 @@ export async function updateInfo(output, newUserName) {
     });
 
     const response = await request.json();
-    console.log(response);
     return response.status === 200;
   } catch (error) {
     console.error(`An error occurred while updating user info : ${error}`);
