@@ -34,10 +34,8 @@ const User = () => {
     setEditName(false);
   };
 
-  // Vérifier la présence du jeton lors du montage du composant
   useEffect(() => {
     if (!output) {
-      // Rediriger vers "/home" si le jeton n'est pas présent
       navigate("/");
     }
   }, [output, navigate]);
