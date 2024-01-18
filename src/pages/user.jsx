@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { InputUser } from "../components/InputUser.jsx";
 import { updateInfo } from "../utils/updateInfo.js";
 import { updateUser } from "../redux/authSlice.js";
 
 const User = () => {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -31,6 +33,14 @@ const User = () => {
     e.preventDefault();
     setEditName(false);
   };
+
+  // Vérifier la présence du jeton lors du montage du composant
+  useEffect(() => {
+    if (!output) {
+      // Rediriger vers "/home" si le jeton n'est pas présent
+      navigate("/");
+    }
+  }, [output, navigate]);
 
   return (
     <>
