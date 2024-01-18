@@ -2,12 +2,12 @@ swagger: '2.0'
 info:
   title: Bank Argent API documentation
   description: Contains all available API endpoints in this codebase
-  version: 2.0.0
+  version: 1.0.0
   termsOfService: 'http://swagger.io/terms/'
-host: localhost:3001
-basePath: /api/v1
-schemes:
-  - http
+# host: localhost:3001
+# basePath: /api/v1
+# schemes:
+#   - http
 paths:
   /user/login:
     post:
@@ -210,6 +210,45 @@ paths:
         '500':
           description: Internal Server Error
   /user/Accounts/{Accountid}/transactions/{Transactionid}:         
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Tranctions Module
+      summary: Transaction
+      description: API for view a transaction
+      parameters:
+        - type: string
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+        - type: string
+          in: path
+          name: Accountid
+          description: User Account ID
+          required: true
+        - type: string
+          in: path
+          name: Transactionid
+          description: User Account transaction ID
+          required: true
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: transaction retrieved successully
+          schema:
+            $ref: '#/definitions/TransactionResponse'
+        '400':
+          description: Invalid Fields
+        '401':
+          description: Invalid Token
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error        
+  /user/Accounts/{Accountid}/transactions/{Transactionid}_update:         
     put:
       security:
         - Bearer: []
@@ -332,11 +371,6 @@ definitions:
         type: string
       name:
         type: string
-        example: Argent Bank Checking (x3448)
-        description: Account name
-      amount:
-        type: number
-        description: Account currency
       balance:
         type: integer
         description: Account available balance
@@ -350,8 +384,6 @@ definitions:
         type: string
       description:
         type: string
-      amount:
-        type: number
       balance:
         type: number
   transactions:
@@ -375,20 +407,22 @@ definitions:
         description: Account ID
       date:
         type: string
-        example: 27/02/20
-        description: date of transaction
       description:
         type: string
-        example: Golden Sun Bakery
-        description: transaction name
       amount:
         type: number
-        example: $8.00
-        description: transaction currency
       balance:
         type: number
-        description: Account available balance
-        example: $298.00
+  TransactionResponse:      
+    type: object
+    properties:
+      transaction type:
+        type: string
+      category:
+        type: string
+      notes:
+        type: string       
+        
   TransactionUpdateRequest:
     type: object
     properties:
@@ -414,3 +448,11 @@ definitions:
             type: string
           notes:
             type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+# basePath: /JEANMARIEDESCHAMPS25/argentBanck/1.0.0
+schemes:
+ - https
+ - http
+# Added by API Auto Mocking Plugin
+basePath: /JEANMARIEDESCHAMPS25/1test/1.0.0
