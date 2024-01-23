@@ -401,7 +401,7 @@ definitions:
   transactionsArray:
     type: object
     properties:
-      AccountId:
+      transactionid:
         type: number
         description: Account ID
       date:
