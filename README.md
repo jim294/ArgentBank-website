@@ -7,8 +7,8 @@ Mon site est visible sur : [Argent Bank by Jim294](https://argentbankjm.netlify.
 
 ## Demo
 
-![Demo1](https://github.com/jim294/ArgentBank-website/blob/master/public/gifs/Project-13-Demo-Part-1.gif)
-![Demo2](https://github.com/jim294/ArgentBank-website/blob/master/public/gifs/Project-13-Demo-Part-2.gif)
+![Demo1](https://github.com/jim294/ArgentBank-website/blob/main/public/gifs/Project-13-Demo-Part-1.gif)
+![Demo2](https://github.com/jim294/ArgentBank-website/blob/main/public/gifs/Project-13-Demo-Part-2.gif)
 
 ## Objectifs
 
