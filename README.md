@@ -5,6 +5,11 @@ Je viens d'intégrer Argant Bank comme développeur front-end. Argent Bank est u
 
 Mon site est visible sur : [Argent Bank by Jim294](https://argentbankjm.netlify.app/)
 
+## Demo
+
+![Demo1](https://github.com/jim294/ArgentBank-website/public/gifs/Project-13-Demo-Part-1.gif)
+![Demo2](https://github.com/jim294/ArgentBank-website/public/gifs/Project-13-Demo-Part-2.gif)
+
 ## Objectifs
 
 ### Installer l'application en local
